@@ -15,13 +15,12 @@ let todos = [];
 // FETCH
 const fetchTodos = async () => {
 
-  
   const res = await fetch(url);
   const _todos = await res.json();
-
+  // console.log(_todos)
   todos = _todos;
-
-  // console.log()
+  // console.log(...todos)
+  
   listTodos();
 }
 fetchTodos();
@@ -31,6 +30,7 @@ const listTodos = () => {
   output.innerHTML = '';
 
   todos.forEach(todo => {
+
     // console.log(todo)
     newTodo(todo);
   })
@@ -40,8 +40,9 @@ const listTodos = () => {
 // APPEND HTML
 
 const newTodo = (todo) => {
+
   let card = document.createElement('div');
-  card.classList.add('p-3', 'my-3', 'todo');
+  card.classList.add('p-3', 'my-3', 'todo' , 'myCard');
   card.id = todo.id;
 
   let innerCard = document.createElement('div');
@@ -54,29 +55,37 @@ const newTodo = (todo) => {
   title.id = todo.id;
 
   let btn = document.createElement('button');
-  btn.classList.add('btn', 'btn-danger');
+  btn.classList.add('btn', 'btn-danger', 'd-none');
   btn.innerText = 'X';
+  btn.id = todo.id
   
 
   output.appendChild(card);
   card.appendChild(innerCard);
   innerCard.appendChild(title);
-
+  innerCard.appendChild(btn);
 
   if(todo.completed) {
-    title.classList.add('completed')
 
-    innerCard.appendChild(btn);
-    btn.addEventListener('click', () => {
-      
-      // console.log(todo.id)
-      btn.parentNode.parentNode.remove()
-      console.log(todos)
-    })
+    title.classList.add('completed')
+    btn.classList.remove('d-none')
   }
+
+  // todos.forEach(todo => {
+//   let template = todos.innerHTML += `
+//   <div id="${todo.id}" class="myCard bg-white border rounded mt-4 p-3 d-flex justify-content-between align-items-center">
+//     <div id="todoText">
+//       <h2>${todo.title}</h2>
+//     </div>
+//     <button class="btn btn-danger">X</button>
+// </div>`
+
+//     output.innerHTML += template;
+//   })
+
 }
 
- // element.parentNode.removeChild(element);
+ 
 
 const createTodo = async (title) => {
   
@@ -94,42 +103,42 @@ const createTodo = async (title) => {
       body: JSON.stringify(_todo) 
     })
     const todo = await res.json();
-    
-    console.log(todo.id)
 
-    inputText.addEventListener('click', (e) => {
-      console.log(e)
-      inputText.toggle.classList('completed')
-    })
-    
+    todo.id = Date.now()
+    // console.log(todo.id)
     todos.unshift(todo);
     listTodos();
 }
 
 
+
+
 // EVENTLISTENERS
-
-
 
 
 output.addEventListener('click', (e) => {
 
   todos.forEach(todo => {
+
     if(e.target.id == todo.id) {
+    
       if(todo.completed == false) {
         todo.completed = true;
       }else {
         todo.completed = false;
       }
-      console.log('hej')
+      // console.log('hej')
     }
-    
-    console.log()
   })
-  // console.log(e.target.id)
 
+    if(e.target.classList.contains('btn')) {
+      console.log(e.target.id)
+     
+      todos = todos.filter(todo => todo.id != e.target.parentNode.id) 
+  }
   listTodos()
 
+  console.log(e.target.id)
 })
 
 
@@ -140,7 +149,7 @@ form.addEventListener('submit', (e) => {
   e.preventDefault();
 
 
-  if(input.value === '' && ' ' &&  '   ') {
+  if(input.value === '') {
     input.classList.add('is-invalid')
     falsy.classList.remove('d-none')
     trueInput.classList.add('d-none')
@@ -154,10 +163,6 @@ form.addEventListener('submit', (e) => {
     trueInput.classList.remove('d-none')
 
     // input.classList.add('is-valid')
-  }
-
-  if(input.completed === true) {
-    inputText.classList.add('completed')
   }
 
   input.value = '';
@@ -194,17 +199,7 @@ form.addEventListener('keydown', (e) => {
 
 // GAMLA FRÅN LISTTODOS
 
-// todos.forEach(todo => {
-//   let template = todos.innerHTML += `
-//   <div id="${todo.id}" class="myCard bg-white border rounded mt-4 p-3 d-flex justify-content-between align-items-center">
-//     <div id="todoText">
-//       <h2>${todo.title}</h2>
-//     </div>
-//     <button class="btn btn-danger">X</button>
-// </div>`
 
-//     output.innerHTML += template;
-//   })
 
 
 output.addEventListener('click', (e) => {

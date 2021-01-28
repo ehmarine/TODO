@@ -6,7 +6,6 @@
 
 .todo h3 {
   color: rgba(255, 250, 250, 0.829);
-  cursor: pointer;
   display: inline-block;
 }
 
@@ -25,6 +24,10 @@
   text-decoration: line-through 3px solid rgba(239, 255, 255, 0.774);
   font-weight: 800;
   font-style: italic;
+}
+
+.myCard {
+  cursor: pointer;
 }
 
 .falsy {
