@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Todo</title>
+</head>
+<body class="bg-light">
+
+  <!-- NAV -->
+  <nav class="navbar navbar-dark bg-dark justify-content-center">
+  <h1 class="text-white headline">TodoList</h1>
+</nav>
+
+<!-- INPUT -->
+      <div class="bg-white border-bottom">
+        <form id="todoForm" class="py-4 container">
+          <div class="input-group">
+              <input id="todoInput" type="text" class="form-control" placeholder="Add Todo...">
+            <div class="input-group-append">
+              <button id="addTodo" class="btn btn-dark"> ADD</button>
+            </div>
+          </div>
+          <small id="falsy" class="falsy d-none">Todo cannot be empty...</small>
+          <small id="trueInput" class="true d-none">Todo Added!</small>
+        </form>
+      </div>
+
+
+
+
+      <!-- TODOS -->
+      <div class="container">
+        <div id="output" class="py-5 container">
+         
+          <div class="p-3 my-3 todo">        
+            <div class="d-flex justify-content-between align-items-center">
+              <h3 class="">Todo Title 2</h3>
+              <button id="deleteBtn" class="btn btn-danger">X</button>
+            </div>
+          </div> 
+
+          <div class="p-3 my-3 todo">        
+            <div class="d-flex justify-content-between">
+              <h3 class="">Todo Title</h3>
+              <button class="btn btn-danger">X</button>
+            </div>
+          </div> 
+          
+        </div>
+      </div>
+
+
+      <!-- <div class="myCard bg-white border rounded mt-4 p-3 d-flex justify-content-between align-items-center">
+        <div id="todoText">
+          <h2>text 1</h2>
+        </div>
+        <button class="btn btn-danger">X</button>
+      </div>
+
+      <div class="myCard bg-white border rounded mt-4 p-3 d-flex justify-content-between align-items-center">
+        <div id="todoText">
+          <h2>text 2</h2>
+        </div>
+        <button class="btn btn-danger">X</button>
+      </div>
+       -->
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+</html>
